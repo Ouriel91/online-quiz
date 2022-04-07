@@ -75,7 +75,11 @@ function GameBoard({resetGame,username}) {
   );
 
   const unescapeHTML = (input) => {
-    return input.replace(/&quot;/g, '"').replace(/&#039;/g, "'")
+    return input.replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
   }
 
 
