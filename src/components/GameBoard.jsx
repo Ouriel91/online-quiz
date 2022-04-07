@@ -88,7 +88,7 @@ function GameBoard({resetGame,username}) {
     <>
       <div className="main">
       <h1 className="username">{username}</h1>
-      {(clock || earned === 100) ? 
+      {(clock || earned === 1000000) ? 
           <EndGame resetGame={resetGame} earned={earned}/> 
           : 
           (

@@ -68,8 +68,6 @@ function Answers({answers, setQuestionNum, setClock}) {
 
     }
 
-    console.log(answers)
-
     return (
         <>
             {/* <button 
