@@ -9,7 +9,7 @@ function Pyramid({questionNum, moneyPyramid}) {
                 className={questionNum === money.id ? "moneylist-item active" : "moneylist-item"}   
                 key={money.id}>
                 <span className="moneylist-item-number">{money.id}</span>
-                <span className="moneylist-item-amount">{money.amount}</span>
+                <span className="moneylist-item-amount">${money.amount}</span>
               </li>
             ))}
           </ul>

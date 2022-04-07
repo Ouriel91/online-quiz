@@ -22,16 +22,16 @@ function Answers({answers, setQuestionNum, setClock}) {
     
         delay(5000, () => {
         if (answer.correct) {
-            //correctSound()
+            correctSound()
             delay(1000, () => {
-            setQuestionNum((prev) => prev + 1)
-            setSelectedAns(null)
-        });
+                setQuestionNum((prev) => prev + 1)
+                setSelectedAns(null)
+            });
             
         } else {
-            //wrongSound()
+            wrongSound()
             delay(1000, () => {
-            setClock(true)
+                setClock(true)
             });
         }
         })
@@ -67,6 +67,8 @@ function Answers({answers, setQuestionNum, setClock}) {
         setFiftyFiftyAnswers(halfAnswers)
 
     }
+
+    console.log(answers)
 
     return (
         <>

@@ -72,13 +72,54 @@
     font-weight: 700;
 }
 
-.username {
+.username, .endText {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 50px;
-    font-size: 70px;
+    font-size: 50px;
     font-weight: 700;
+    color: #d4b14e; 
+    text-shadow: 4px 4px #746c6c;
+    font-family: 'Droid serif', serif;  
+    font-style: italic; 
+    margin: 0 0 12px; 
+    text-align: center;
+}
+
+.endgame-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: auto;
+  width: 500px;
+  height: 500px;
+  margin-bottom: 20px;
+}
+
+.celebration {
+  width: 300px;
+  height: 300px;
+}
+
+.resetBtn {
+  width: 300px;
+  background-color: initial;
+  background-image: linear-gradient(rgba(179, 132, 201, .84), rgba(57, 31, 91, .84) 50%);
+  border-radius: 42px;
+  border-width: 0;
+  box-shadow: rgba(57, 31, 91, 0.24) 0 2px 2px,rgba(179, 132, 201, 0.4) 0 8px 12px;
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  text-shadow: rgba(255, 255, 255, 0.4) 0 0 4px,rgba(255, 255, 255, 0.2) 0 0 12px,rgba(57, 31, 91, 0.6) 1px 1px 4px,rgba(57, 31, 91, 0.32) 4px 4px 16px;
+  cursor: pointer;
+}
+
+.resetBtn:hover {
+  background-image: linear-gradient(#B384C9, #391F5B 50%);
 }
 
 .trivia {
@@ -90,7 +131,7 @@
   }
   
 .question {
-    width: 80%;
+    width: 70%;
     background: linear-gradient(#100241, black);
     text-align: center;
     padding: 20px;
@@ -107,7 +148,7 @@
 }
   
 .answer {
-    width: 40%;
+    width: 35%;
     padding: 10px;
     margin: 0 10px 20px 10px;
     text-align: center;
@@ -166,15 +207,6 @@
     }
 }
 
-.endText {
-    position: relative;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-}
-
 .start {
     width: 550px;
     height: 550px;
@@ -193,25 +225,56 @@
   .startInput {
     width: 100%;
     height: 30px;
-    border: none;
-    border-radius: 5px;
-    text-align: center;
     font-size: 18px;
+    margin-top: 10px;
+    text-align: center;
+    outline:none;
+    background: linear-gradient(to left top, #000, #22132e) fixed;
+    border-radius: 10px;
+    border: 2px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.8);
+    transition: all 0.5s;
+  }
+
+  .startInput:hover {
+    border: 2px solid rgba(255,255,255,0.5);
   }
   
   .startInput:focus {
-    outline: none;
+    border: 2px solid rgba(255,255,255,0.5);
+    background: linear-gradient(to left top, #000, #4e2d69) fixed;
   }
   
   .startButton {
     width: 100%;
-    height: 30px;
+    height: 50px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 18px;
     font-weight: 500;
     margin-top: 10px;
+    background-color: #FFFFFF;
+    border-radius: 40em;
+    border-style: none;
+    box-shadow: #ADCFFF 0 -12px 6px inset;
+    box-sizing: border-box;
+    color: #000000;
+    cursor: pointer;
+    display: inline-block;
+    outline: none;
+    padding: 1rem 1.3rem;
+    transition: all .15s;
+  }
+
+  .startButton:hover {
+    background-color: #FFC229;
+    box-shadow: #FF6314 0 -6px 8px inset;
+    transform: scale(1.125);
+  }
+
+  .startButton:active {
+    transform: scale(1.025);
   }
 
   .millioner {
@@ -222,6 +285,8 @@
     object-fit: cover;
     border-radius: 50%;
   }
+
+  
 
 
   
