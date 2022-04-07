@@ -10,7 +10,9 @@ function App() {
   
   return (
     <div className="app">
-      {username ? <GameBoard username={username}/> : <StartGame setUsername={setUsername} />}
+      {username ? 
+        <GameBoard username={username}/> : 
+        <StartGame setUsername={setUsername} />}
     </div>
   );
 }

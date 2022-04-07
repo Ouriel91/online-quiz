@@ -1,50 +1,27 @@
 import {useState, useEffect} from 'react'
-import useSound from 'use-sound'
-import correct from "../sounds/correct.mp3"
-import wrong from "../sounds/wrong.mp3"
+import Answers from './Answers'
 
 function Trivia({data, setClock, questionNum, setQuestionNum}) {
 
   const [trivia, setTrivia] = useState(null)
-  const [selectedAns, setSelectedAns] = useState(null)
-  const [selectedClass, setSelectedClass] = useState("answer")
-
-  const [correctSound] = useSound(correct)
-  const [wrongSound] = useSound(wrong)
 
   useEffect(() => { 
     setTrivia(data[questionNum - 1]);
   }, [data, questionNum])
 
-  const handleClick = (answer) => {
-    setSelectedAns(answer);
-    setSelectedClass("answer active");
 
-    delay(3000, () => {
-      setSelectedClass(answer.correct ? "answer correct" : "answer wrong");
-    });
-   
-    delay(5000, () => {
-      if (answer.correct) {
-        //correctSound()
-        delay(1000, () => {
-          setQuestionNum((prev) => prev + 1)
-          setSelectedAns(null)
-        });
-        
-      } else {
-        //wrongSound()
-        delay(1000, () => {
-          setClock(true)
-        });
-      }
-      })
-  };
+  const shuffleAnswers = (answers) => {
 
-  const delay = (duration, callback) => {
-    setTimeout(() => {
-      callback()
-    }, duration)
+    let index = answers.length, randomIndex
+
+    while(index !== 0) {
+      randomIndex = Math.floor((Math.random()) * index)
+      index--
+
+      [[answers[index], answers[randomIndex]]] = [[answers[randomIndex], answers[index]]]
+    }
+    console.log(answers)
+    return answers
   }
 
   return (
@@ -54,14 +31,13 @@ function Trivia({data, setClock, questionNum, setQuestionNum}) {
         </div>
         <div className="answers">
             {trivia ? 
-              trivia.answers.map(answersItems => (  
-                <div 
-                  className={selectedAns === answersItems ? selectedClass : "answer"}
-                  key={answersItems.text}
-                  onClick={() => !selectedAns && handleClick(answersItems)}>
-                    {answersItems.text}
-                </div>
-              )) 
+              <Answers 
+                answers={shuffleAnswers(trivia.answers)}
+                setQuestionNum={setQuestionNum}
+                setClock={setClock} />
+              /* shuffleAnswers(trivia.answers).map(answersItems => (  
+                
+              )) */
               : null}
         </div>
     </div>
