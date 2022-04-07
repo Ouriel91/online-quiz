@@ -24,12 +24,20 @@ function GameBoard({resetGame,username}) {
 
       for (let i = 0; i < rawData.length; i++) {
         const id = i + 1
-        const question = rawData[i].question
+        const question = unescapeHTML(rawData[i].question)
         const correctAnswer = rawData[i].correct_answer
+
         const answers = []
-        answers.push({text: correctAnswer, correct: true})
+
+        answers.push({
+            text: correctAnswer, 
+            correct: true
+        })
+
         for(let j = 0; j < rawData[i].incorrect_answers.length; j++){
-          answers.push({text: rawData[i].incorrect_answers[j], correct: false})
+          answers.push({
+            text: rawData[i].incorrect_answers[j], correct: false
+          })
         }
 
         const finalObj = {
@@ -65,6 +73,10 @@ function GameBoard({resetGame,username}) {
           ].reverse(),
         []
   );
+
+  const unescapeHTML = (input) => {
+    return input.replace(/&quot;/g, '"').replace(/&#039;/g, "'")
+  }
 
 
   useEffect(() => {
