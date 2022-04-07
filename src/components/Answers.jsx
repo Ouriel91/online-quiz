@@ -6,6 +6,8 @@ import wrong from "../sounds/wrong.mp3"
 function Answers({answers, setQuestionNum, setClock}) {
     const [selectedAns, setSelectedAns] = useState(null)
     const [selectedClass, setSelectedClass] = useState("answer")
+    const [isFiftyFifty, setIsFiftyFifty] = useState(false)
+    const [fiftyFiftyAnswers, setFiftyFiftyAnswers] = useState([])
 
     const [correctSound] = useSound(correct)
     const [wrongSound] = useSound(wrong)
@@ -20,14 +22,14 @@ function Answers({answers, setQuestionNum, setClock}) {
     
         delay(5000, () => {
         if (answer.correct) {
-            correctSound()
+            //correctSound()
             delay(1000, () => {
             setQuestionNum((prev) => prev + 1)
             setSelectedAns(null)
         });
             
         } else {
-            wrongSound()
+            //wrongSound()
             delay(1000, () => {
             setClock(true)
             });
@@ -41,20 +43,49 @@ function Answers({answers, setQuestionNum, setClock}) {
         }, duration)
     }
 
+    const handleFiftyFifty = (answers) => {
 
-  return (
-      <>
-        {answers.map(answersItems => 
-        (
-            <div 
-                className={selectedAns === answersItems ? selectedClass : "answer"}
-                key={answersItems.text}
-                onClick={() => !selectedAns && handleClick(answersItems)}>
-                {answersItems.text}
-            </div>
-        ))}
-    </>
-  )
+        if(!isFiftyFifty){
+            return answers
+        }
+
+        let halfAnswers = []
+        
+        for (let i = 0; i < answers.length; i++) {
+            if(answers[i].correct === true){
+                halfAnswers.push(answers[i].text)
+            }
+        }
+
+        while(halfAnswers.length === 1){
+            let randomIndex = Math.floor(Math.random() * answers.length)
+            if(answers[randomIndex].correct === false){
+                halfAnswers.push(answers[randomIndex].text)
+            }
+        }
+
+        setFiftyFiftyAnswers(halfAnswers)
+
+    }
+
+    return (
+        <>
+            {/* <button 
+                onClick={() => setIsFiftyFifty(true)}
+                disabled={isFiftyFifty}>
+                    50:50
+            </button> */}
+            {answers.map(answersItems => 
+            (
+                <div 
+                    className={selectedAns === answersItems ? selectedClass : "answer"}
+                    key={answersItems.text}
+                    onClick={() => !selectedAns && handleClick(answersItems)}>
+                    {answersItems.text}
+                </div>
+            ))}
+        </>
+    )
 }
 
 export default Answers

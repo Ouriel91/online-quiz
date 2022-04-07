@@ -1,8 +1,13 @@
 import React from 'react'
+//import logo from '../assets/e.gif'
 
-function EndGame({earned}) {
+function EndGame({resetGame, earned}) {
   return (
-    <h1 className="endText">You earned: {earned}</h1>
+    <>
+      {/* <img src={logo} alt="loading..." /> */}
+      <h1 className="endText">You earned: {earned}</h1>
+      <button onClick={resetGame}>reset</button>
+    </>
   )
 }
 

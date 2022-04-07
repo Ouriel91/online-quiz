@@ -25,7 +25,7 @@ function StartGame({setUsername}) {
                 ref={inputRef} />
             <button className="startButton" onClick={handleClick}>
                 Start
-            </button>
+            </button>    
         </div>
     )
 }

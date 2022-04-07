@@ -7,11 +7,15 @@ import StartGame from './components/StartGame'
 function App() {
 
   const [username, setUsername] = useState(null)
+
+  const resetGame = () => {
+    setUsername(null)
+  }
   
   return (
     <div className="app">
       {username ? 
-        <GameBoard username={username}/> : 
+        <GameBoard resetGame={resetGame} username={username}/> : 
         <StartGame setUsername={setUsername} />}
     </div>
   );

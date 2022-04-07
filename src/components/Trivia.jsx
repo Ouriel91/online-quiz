@@ -20,7 +20,7 @@ function Trivia({data, setClock, questionNum, setQuestionNum}) {
 
       [[answers[index], answers[randomIndex]]] = [[answers[randomIndex], answers[index]]]
     }
-    console.log(answers)
+
     return answers
   }
 
@@ -35,9 +35,6 @@ function Trivia({data, setClock, questionNum, setQuestionNum}) {
                 answers={shuffleAnswers(trivia.answers)}
                 setQuestionNum={setQuestionNum}
                 setClock={setClock} />
-              /* shuffleAnswers(trivia.answers).map(answersItems => (  
-                
-              )) */
               : null}
         </div>
     </div>
