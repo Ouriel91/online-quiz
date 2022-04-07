@@ -4,7 +4,7 @@ import Trivia from './Trivia'
 import Timer from './Timer'
 import EndGame from './EndGame'
 
-function GameBoard() {
+function GameBoard({username}) {
 
     const [questionNum, setQuestionNum] = useState(1)
     const [clock, setClock] = useState(false)
@@ -109,6 +109,7 @@ function GameBoard() {
   return (
     <>
       <div className="main">
+      <h1 className="username">{username}</h1>
       {clock ? 
           <EndGame earned={earned}/> 
           : 
