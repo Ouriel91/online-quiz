@@ -4,6 +4,7 @@ import Answers from './Answers'
 function Trivia({data, setClock, questionNum, setQuestionNum}) {
 
   const [trivia, setTrivia] = useState(null)
+  const [usedFiftyFifty, setUsedFiftyFifty] = useState(false)
 
   useEffect(() => { 
     setTrivia(data[questionNum - 1]);
@@ -34,7 +35,9 @@ function Trivia({data, setClock, questionNum, setQuestionNum}) {
               <Answers 
                 answers={shuffleAnswers(trivia.answers)}
                 setQuestionNum={setQuestionNum}
-                setClock={setClock} />
+                setClock={setClock}
+                usedFiftyFifty={usedFiftyFifty}
+                setUsedFiftyFifty={setUsedFiftyFifty} />
               : null}
         </div>
     </div>

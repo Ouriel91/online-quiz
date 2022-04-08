@@ -25,7 +25,7 @@ function GameBoard({resetGame,username}) {
       for (let i = 0; i < rawData.length; i++) {
         const id = i + 1
         const question = unescapeHTML(rawData[i].question)
-        const correctAnswer = rawData[i].correct_answer
+        const correctAnswer = unescapeHTML(rawData[i].correct_answer)
 
         const answers = []
 
@@ -36,7 +36,8 @@ function GameBoard({resetGame,username}) {
 
         for(let j = 0; j < rawData[i].incorrect_answers.length; j++){
           answers.push({
-            text: rawData[i].incorrect_answers[j], correct: false
+            text: unescapeHTML(rawData[i].incorrect_answers[j]), 
+            correct: false
           })
         }
 

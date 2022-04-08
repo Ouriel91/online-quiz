@@ -12,7 +12,7 @@ function StartGame({setUsername}) {
     }
 
     useEffect(() => {
-        startPlaying()
+        //startPlaying()
       },[startPlaying])
 
     return (

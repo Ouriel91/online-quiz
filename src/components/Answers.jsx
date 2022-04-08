@@ -3,16 +3,21 @@ import useSound from 'use-sound'
 import correct from "../sounds/correct.mp3"
 import wrong from "../sounds/wrong.mp3"
 
-function Answers({answers, setQuestionNum, setClock}) {
+function Answers({answers, setQuestionNum, setClock, usedFiftyFifty ,setUsedFiftyFifty}) {
     const [selectedAns, setSelectedAns] = useState(null)
     const [selectedClass, setSelectedClass] = useState("answer")
-    const [isFiftyFifty, setIsFiftyFifty] = useState(false)
     const [fiftyFiftyAnswers, setFiftyFiftyAnswers] = useState([])
 
     const [correctSound] = useSound(correct)
     const [wrongSound] = useSound(wrong)
 
     const handleClick = (answer) => {
+
+        console.log("ffa",fiftyFiftyAnswers)
+        if(fiftyFiftyAnswers.length > 0 && !fiftyFiftyAnswers.includes(answer.text)) {
+            return
+        }
+
         setSelectedAns(answer);
         setSelectedClass("answer active");
 
@@ -26,6 +31,7 @@ function Answers({answers, setQuestionNum, setClock}) {
             delay(1000, () => {
                 setQuestionNum((prev) => prev + 1)
                 setSelectedAns(null)
+                setFiftyFiftyAnswers([])
             });
             
         } else {
@@ -45,10 +51,6 @@ function Answers({answers, setQuestionNum, setClock}) {
 
     const handleFiftyFifty = (answers) => {
 
-        if(!isFiftyFifty){
-            return answers
-        }
-
         let halfAnswers = []
         
         for (let i = 0; i < answers.length; i++) {
@@ -65,23 +67,34 @@ function Answers({answers, setQuestionNum, setClock}) {
         }
 
         setFiftyFiftyAnswers(halfAnswers)
+        setUsedFiftyFifty(true)
+    }
 
+    console.log(answers)
+
+    const textRender = (answersItems) => {
+    
+        if(fiftyFiftyAnswers.length === 0 || fiftyFiftyAnswers.includes(answersItems.text)) {
+            return answersItems.text
+        }
+
+        return null
     }
 
     return (
         <>
-            {/* <button 
-                onClick={() => setIsFiftyFifty(true)}
-                disabled={isFiftyFifty}>
+            <button 
+                onClick={() => handleFiftyFifty(answers)}
+                disabled={usedFiftyFifty}>
                     50:50
-            </button> */}
+            </button>
             {answers.map(answersItems => 
             (
                 <div 
                     className={selectedAns === answersItems ? selectedClass : "answer"}
                     key={answersItems.text}
                     onClick={() => !selectedAns && handleClick(answersItems)}>
-                    {answersItems.text}
+                    {textRender(answersItems)} 
                 </div>
             ))}
         </>

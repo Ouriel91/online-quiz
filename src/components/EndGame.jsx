@@ -1,4 +1,3 @@
-import {useEffect} from 'react'
 import millioner from '../assets/millioner.gif'
 import winner from '../assets/winner.gif'
 import money from '../assets/money.gif'

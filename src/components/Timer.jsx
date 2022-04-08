@@ -15,7 +15,7 @@ function Timer({setClock, questionNum}) {
         },1000)   
 
         return () => {clearInterval(interval)}
-    },[timer, setTimer])
+    },[timer, setTimer, setClock])
 
     useEffect(() => {
         setTimer(30)
