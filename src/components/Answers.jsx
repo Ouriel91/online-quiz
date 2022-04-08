@@ -4,6 +4,7 @@ import correct from "../sounds/correct.mp3"
 import wrong from "../sounds/wrong.mp3"
 
 function Answers({answers, setQuestionNum, setClock, usedFiftyFifty ,setUsedFiftyFifty}) {
+
     const [selectedAns, setSelectedAns] = useState(null)
     const [selectedClass, setSelectedClass] = useState("answer")
     const [fiftyFiftyAnswers, setFiftyFiftyAnswers] = useState([])
@@ -13,8 +14,9 @@ function Answers({answers, setQuestionNum, setClock, usedFiftyFifty ,setUsedFift
 
     const handleClick = (answer) => {
 
-        console.log("ffa",fiftyFiftyAnswers)
-        if(fiftyFiftyAnswers.length > 0 && !fiftyFiftyAnswers.includes(answer.text)) {
+        //prevent click on 50-50 from answers that cut off
+        if(fiftyFiftyAnswers.length > 0 
+            && !fiftyFiftyAnswers.includes(answer.text)) {
             return
         }
 
@@ -70,11 +72,13 @@ function Answers({answers, setQuestionNum, setClock, usedFiftyFifty ,setUsedFift
         setUsedFiftyFifty(true)
     }
 
-    console.log(answers)
-
     const textRender = (answersItems) => {
     
-        if(fiftyFiftyAnswers.length === 0 || fiftyFiftyAnswers.includes(answersItems.text)) {
+        //render all the answers text if 50/50 (render half of answers) used, 
+        //and null the answers that cut in 50-50
+        //or doesn't (render all answers text) if 50-50 not selected
+        if(fiftyFiftyAnswers.length === 0 || 
+            fiftyFiftyAnswers.includes(answersItems.text)) {
             return answersItems.text
         }
 
@@ -84,9 +88,10 @@ function Answers({answers, setQuestionNum, setClock, usedFiftyFifty ,setUsedFift
     return (
         <>
             <button 
+                className="fifty-fifty"
                 onClick={() => handleFiftyFifty(answers)}
-                disabled={usedFiftyFifty}>
-                    50:50
+                disabled={usedFiftyFifty || answers.length === 2}>
+                    50/50
             </button>
             {answers.map(answersItems => 
             (

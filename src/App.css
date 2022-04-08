@@ -128,7 +128,39 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-  }
+    position: relative;
+}
+
+.fifty-fifty {
+  position: absolute;
+  color: #fff;
+  left: 20px;
+  bottom: 180px;
+  background: #f3f0f1;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  font-size: 20px;
+  cursor: pointer;
+  border-color: rgb(114, 105, 105);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  opacity: 0.8;
+	background-color: #674e69;
+	background-image: linear-gradient(315deg, #353ec7 0%, #1a4661 74%);
+}
+
+.fifty-fifty:hover {
+  color: #000;
+  background-image: linear-gradient(315deg, #4435c7 0%, #9eafb9 74%);
+
+}
+
+.fifty-fifty:disabled {
+  cursor: not-allowed;
+  opacity: 0.2;
+}
   
 .question {
     width: 70%;

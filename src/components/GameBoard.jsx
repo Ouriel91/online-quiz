@@ -1,4 +1,4 @@
-import {useMemo, useState, useEffect} from "react"
+import {useState, useEffect} from "react"
 import Pyramid from './Pyramid'
 import Trivia from './Trivia'
 import Timer from './Timer'
@@ -53,8 +53,7 @@ function GameBoard({resetGame,username}) {
       setData(updateData)
     }
 
-    const moneyPyramid = useMemo(
-        () =>
+    const moneyPyramid = 
           [
             { id: 1, amount: 100},
             { id: 2, amount: 200},
@@ -71,9 +70,7 @@ function GameBoard({resetGame,username}) {
             { id: 13, amount:  250000 },
             { id: 14, amount:  500000 },
             { id: 15, amount:  1000000 },
-          ].reverse(),
-        []
-  );
+          ].reverse()
 
   const unescapeHTML = (input) => {
     return input.replace(/&amp;/g, '&')
